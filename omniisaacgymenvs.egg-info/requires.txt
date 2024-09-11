@@ -1,0 +1,5 @@
+hydra-core==1.1.1
+omegaconf==2.1.1
+protobuf==3.20.2
+redis==3.5.3
+rl-games==1.6.0

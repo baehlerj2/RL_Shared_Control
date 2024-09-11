@@ -1,0 +1,37 @@
+<launch>
+  <arg name="use_sim_time" default="true" />
+  <arg name="gui" default="true" />
+  <arg name="headless" default="false" />
+  
+  <arg name="world_path" default="/home/jannis/oige22/gazebo/worlds" />
+  <arg name="world" default="door1_25.world" />
+  <arg name="world_name" default="$(arg world_path)/$(arg world)" />
+
+  <!-- Robot Spawn Pose -->
+  <arg name="x" default="0"/>
+  <arg name="y" default="0"/>
+  <arg name="z" default="0.1"/>
+  <arg name="yaw" default="0"/>
+  <arg name="joystick" default="true" />
+  
+  <!-- Configuration of Ridgeback which you would like to simulate.
+       See ridgeback_description for details. -->
+  <arg name="config" default="$(optenv RIDGEBACK_CONFIG base)" />
+
+  <!-- Launch Gazebo with the specified world -->
+  <include file="$(find ridgeback_gazebo)/launch/ridgeback_world.launch">
+    <arg name="config" value="$(arg config)" />
+    <arg name="x" value="$(arg x)" />
+    <arg name="y" value="$(arg y)" />
+    <arg name="z" value="$(arg z)" />
+    <arg name="yaw" value="$(arg yaw)" />
+    <arg name="joystick" value="$(arg joystick)" />
+    <arg name="gui" value="$(arg gui)" />
+    <arg name="use_sim_time" value="$(arg use_sim_time)" />
+    <arg name="headless" value="$(arg headless)" />
+    <arg name="world_name" value="$(arg world_name)" />
+
+  </include>
+
+
+</launch>

@@ -1,0 +1,28 @@
+<launch>
+  
+  <arg name="world_path" default="/home/jannis/oige22/gazebo/worlds" />
+  <arg name="world" default="ridgeback_bigobs.world" />
+  <arg name="world_name" default="$(arg world_path)/$(arg world)" />
+
+  <!-- Robot Spawn Pose -->
+  <arg name="x" default="0"/>
+  <arg name="y" default="0"/>
+  <arg name="yaw" default="0.0"/>
+
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(arg world_name)"/> <!-- world_name is wrt GAZEBO_RESOURCE_PATH environment variable -->
+    <arg name="paused" value="false"/>
+    <arg name="use_sim_time" value="true"/>
+    <arg name="gui" value="true"/>
+    <arg name="headless" value="false"/>
+    <arg name="debug" value="false"/>
+  </include>
+  
+  <include file="$(find husky_gazebo)/launch/spawn_husky.launch">
+    <arg name="x" value="$(arg x)"/>
+    <arg name="y" value="$(arg y)"/>
+    <arg name="yaw" value="$(arg yaw)"/>
+  </include>
+
+
+</launch>

@@ -1,0 +1,28 @@
+<launch>
+  
+  <arg name="world_path" default="/home/jannis/oige22/gazebo/worlds" />
+  <arg name="world" default="ridgeback_bigobs.world" />
+  <arg name="world_name" default="$(arg world_path)/$(arg world)" />
+
+  <!-- Robot Spawn Pose -->
+  <arg name="x" default="0"/>
+  <arg name="y" default="0"/>
+  <arg name="z" default="0.1"/>
+0
+  <!-- Configuration of Ridgeback which you would like to simulate.
+       See ridgeback_description for details. -->
+  <arg name="config" default="$(optenv RIDGEBACK_CONFIG base)" />
+
+  <!-- Launch Gazebo with the specified world -->
+  <include file="$(find turtlebot3_gazebo)/launch/turtlebot3_world.launch">
+    <arg name="x_pos" value="$(arg x)" />
+    <arg name="y_pos" value="$(arg y)" />
+    <arg name="z_pos" value="$(arg z)" />
+    <arg name="world_name" value="$(arg world_name)" />
+
+  </include>
+  
+  <node name="scan_relay" pkg="topic_tools" type="relay" args="/scan /front/scan" output="screen"/>
+
+
+</launch>
